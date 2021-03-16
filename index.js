@@ -175,34 +175,34 @@ import EC from './ec.js'
                     }
 
                     let refreshOps = (node)=>{
-                        if (node.startsWith(`https://${ec.appHost}`)) {
-                            return `<a class="ec-seed-reboot" href="javascript:void(0)">${feather.icons['refresh-cw'].toSvg({
+                        //if (node.startsWith(`https://${ec.appHost}`)) {
+                            return `<a class="ec-seed-reboot" href="javascript:void(0)" ec-node="${node}">${feather.icons['refresh-cw'].toSvg({
                                 'color': 'green'
                             })}</a>`;
-                        }
+                        //}
 
-                        return '&nbsp;';
+                        //return '&nbsp;';
                     }
 
                     let debugOps = (node)=>{
-                        if (node.startsWith(`https://${ec.appHost}`)) {
-                            return `<a class="ec-seed-debug" href="javascript:void(0)">${feather.icons['monitor'].toSvg({
+                        //if (node.startsWith(`https://${ec.appHost}`)) {
+                            return `<a class="ec-seed-debug" href="javascript:void(0)" ec-node="${node}">${feather.icons['monitor'].toSvg({
                                 'color': 'blue'
                             })}</a>`;
-                        }
+                        //}
 
-                        return '&nbsp;';
+                        //return '&nbsp;';
                     }
 
                     let remoteOps = (node)=>{
-                        if (node.startsWith(`https://${ec.appHost}`)) {
-                            return `<a class="ec-seed-term" href="javascript:void(0)">${feather.icons['terminal'].toSvg({
+                        //if (node.startsWith(`https://${ec.appHost}`)) {
+                            return `<a class="ec-seed-term" href="javascript:void(0)" ec-node="${node}">${feather.icons['terminal'].toSvg({
                                 color: 'black',
                                 'border-radius': '3px'
                             })}</a>`;
-                        }
+                        //}
 
-                        return '&nbsp;';
+                        //return '&nbsp;';
                     }
 
                     //ec.attachWorker(`${ec.assetPath}/worker.js`);
@@ -255,6 +255,7 @@ import EC from './ec.js'
                             }
 
                             let _o = 0
+			      , nodeURL = $(e.target).parent().attr("ec-node")
                               , ref2 = setInterval(()=>{
                                 _o += 10;
                                 $(e.target).css({
@@ -265,6 +266,7 @@ import EC from './ec.js'
                             , 100)
                               , ref3 = setInterval(()=>{
                                 ec.TenguSeederAPI(`${ec.apiPath}/seed`, 'GET').then(d=>{
+                                //ec.TenguSeederAPI(`${ec.apiPath}/seed`, 'GET').then(d=>{
                                     clearInterval(ref2);
                                     clearInterval(ref3);
                                     $(e.target).css({
