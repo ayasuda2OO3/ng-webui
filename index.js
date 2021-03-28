@@ -294,13 +294,15 @@ import EC from './ec.js'
 
                         $('.ec-seed-debug > svg').on('click', (e)=>{
                             e.preventDefault();
-                            ec.showRemoteDebug(`wss://${ec.appHost + ec.appLog}`);
+			    let nodeURL = $(e.target).parent().attr("ec-node")
+                            ec.showRemoteDebug(`wss://${nodeURL + ec.appLog}`);
                         }
                         );
 
                         $('.ec-seed-term > svg').on('click', (e)=>{
                             e.preventDefault();
-                            ec.showTerminal(`wss://${ec.appHost + ec.appTerm}`);
+                            let nodeURL = $(e.target).parent().attr("ec-node")
+                            ec.showTerminal(`wss://${nodeURL + ec.appTerm}`);
                         }
                         );
 
