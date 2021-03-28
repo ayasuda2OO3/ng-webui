@@ -294,7 +294,7 @@ import EC from './ec.js'
 
                         $('.ec-seed-debug > svg').on('click', (e)=>{
                             e.preventDefault();
-			    let nodeURL = $(e.target).parent().attr("ec-node"),
+			    let nodeURL = $(e.target).parent().attr("ec-node");
 			    nodeURL = nodeURL.replace("https://","wss://");
                             ec.showRemoteDebug(`${nodeURL + ec.appLog}`);
                         }
@@ -302,7 +302,7 @@ import EC from './ec.js'
 
                         $('.ec-seed-term > svg').on('click', (e)=>{
                             e.preventDefault();
-                            let nodeURL = $(e.target).parent().attr("ec-node"),
+                            let nodeURL = $(e.target).parent().attr("ec-node");
 			    nodeURL = nodeURL.replace("https://","wss://");
                             ec.showTerminal(`${nodeURL + ec.appTerm}`);
                         }
