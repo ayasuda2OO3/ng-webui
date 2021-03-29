@@ -178,7 +178,8 @@ class Base {
 
     }
 
-    showRemoteDebug(url) {
+    showRemoteDebug(_url) {
+        let url = `${_url}?tkn=${this.GetTenguToken()}`; 
         if (document.getElementsByClassName("ec-xdbg").length > 0)
             return;
 
@@ -243,7 +244,9 @@ class Base {
 
     }
 
-    showTerminal(url) {
+    showTerminal(_url) {
+        let url = `${_url}?tkn=${this.GetTenguToken()}`;
+        
         if (document.getElementsByClassName("ec-xterm").length > 0)
             return;
 
