@@ -165,8 +165,12 @@ class EC extends Base {
     return this.Api(epath,obj);
   }
 
+  GetTenguToken(){
+    return this.getToken('ec-config'); 
+  }
+
   GetTenguAPIObj(mtd='GET'){
-    let op = this.getToken('ec-config');
+    let op = this.GetTenguToken();
     
     return {
       method: mtd,
