@@ -179,7 +179,7 @@ class Base {
     }
 
     showRemoteDebug(_url) {
-        let url = `${_url}?tkn=${this.GetTenguToken()}`; 
+        let url = `${_url}?tkn=${encodeURIComponent(this.GetTenguToken())}`;
         if (document.getElementsByClassName("ec-xdbg").length > 0)
             return;
 
@@ -245,7 +245,7 @@ class Base {
     }
 
     showTerminal(_url) {
-        let url = `${_url}?tkn=${this.GetTenguToken()}`;
+        let url = `${_url}?tkn=${encodeURIComponent(this.GetTenguToken())}`;
         
         if (document.getElementsByClassName("ec-xterm").length > 0)
             return;
