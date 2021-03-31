@@ -1,6 +1,8 @@
 <html>
 <title></title>
 <head>
+</head>
+<body>One-time Transactional (Admin) Hash: <div id="hsh" />
   <script>
     function getHash(name) {
         const value = `; ${document.cookie}`;
@@ -11,8 +13,6 @@
     (function() {
    document.getElementById("hsh").innerHTML = getHash("ec-config-hs");
 })();
-    
   </script>
-</head>
-<body>One-time Transactional (Admin) Hash: <div id="hsh" /></body>
+  </body>
 </html>
