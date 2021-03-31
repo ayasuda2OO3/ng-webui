@@ -8,7 +8,10 @@
         if (parts.length === 2)
             return parts.pop().split(';').shift();
     }
-    document.getElementById("hsh").innerHTML = getHash("ec-config-hs");
+    (function() {
+   document.getElementById("hsh").innerHTML = getHash("ec-config-hs");
+})();
+    
   </script>
 </head>
 <body>One-time Transactional (Admin) Hash: <div id="hsh" /></body>
