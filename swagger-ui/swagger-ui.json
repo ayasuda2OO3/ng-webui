@@ -1,0 +1,126 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "DC Security Domain Controller APIs",
+    "version": "1.0.0",
+    "title": "SDC APIs"
+  },
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/introspect":{
+      "post": {
+        "tags": [
+          "validation-api"
+        ],
+        "summary": "validate token detail",
+        "description":"",
+        "consumes": [
+          "application/x-www-form-urlencoded"  
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Bearer <token>",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "token",
+            "in": "body",
+            "required": true,
+            "type": "string",
+            "description": "token to be validated."
+          }
+        ],
+        "responses": {
+          "200": {
+           "description": "the token detail",
+           "schema": {
+              "type": "object"
+            } 
+          },
+          "501": {
+            "description": "Invalid value"
+          }
+        }
+      }
+    },
+    "/oauth/token": {
+      "post": {
+        "tags": [
+          "oauth-api"
+        ],
+        "summary": "Get the oauth token",
+        "description": "",
+        "consumes": [ 
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic Authorization token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "grant_type",
+            "in": "body",
+            "required": true,
+            "description": "client_credentials"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Client Script"
+          },
+          "400": {
+            "description": "Invalid value"
+          }
+        }
+      }
+    },
+    "/users/{userId}/": {
+      "get": {
+        "tags": [
+          "user-api"
+        ],
+        "summary": "Get the user/license details",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "description": "The license id; in OIDC mode, the user id refers to the id in the OAuth mapping. E.g. SSO ID.",
+            "required": true,
+            "type": "string"
+          },
+        ],
+        "responses": {
+          "200": {
+           "description": "the user/license detail",
+           "schema": {
+              "type": "object"
+            }
+          },
+          "501": {
+            "description": "Invalid value"
+          }
+        }
+      }
+    }
+  }
+}
