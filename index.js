@@ -282,7 +282,7 @@ import EC from './ec.js'
                             }
                             , 5000);
 
-                            ec.TenguSeederAPI(`${nodeURL}/exit`, 'POST').then(d=>{
+                            ec.TenguSeederAPI(`${nodeURL}/reboot`, 'POST').then(d=>{
                                 console.log(`seeder is being rebooted. d: ${d}`);
                             }
                             ).catch(e=>{
