@@ -1,8 +1,8 @@
 swagger: '2.0'
 info:
-  title: Unified Portal API
+  title: The Unified Portal API
   description: |
-    Universal Portal API supports UI applications deployed with the portal.
+    The Universal Portal API that is supporting UI applications deployed with the portal backend.
   version: "1.2.0-b"
 #host: ec-portal.run.aws-usw02-dev.ice.predix.io
 schemes:
@@ -22,7 +22,7 @@ securityDefinitions:
     #  write: Grants write access
     #  admin: Grants read and write access to administrative information
 paths:
-  /scopes:
+  /{rev}/api/{key}:
     post:
       summary: Create new scope
       description: |
@@ -31,6 +31,27 @@ paths:
         - Scope
       security:
         - OAuth2: []
+      parameters: 
+        - in: path
+          name: rev
+          default: v1.2beta
+          description: |
+            The revision for this SDC instance.
+          required: true
+          type: string
+        - in: path
+          name: key
+          description: |
+            The key for the key-value pair dataset.
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: |
+            The value for the key-value pair dataset.
+          required: true
+          type: object
+    put:
     get:
       summary: Get current scopes list
       description: |
@@ -40,31 +61,6 @@ paths:
       security:
         - OAuth2: []
     
-  /scopes/{scopeId}:
-    put:
-      summary: Update scope from SDC
-      description: |
-        Update scope detail by scope ID registered with SDC instance.
-      tags:
-        - Scope
-      security:
-        - OAuth2: []
-    delete:
-      summary: Delete scope from SDC
-      description: |
-        Remove existing scope registered with SDC instance.    
-      tags:
-        - Scope
-      security:
-        - OAuth2: []
-    get:
-      summary: Get scope detail from SDC
-      description: |
-        Get existing scope detail registered with SDC instance.    
-      tags:
-        - Scope
-      security:
-        - OAuth2: []
   /{rev}/reboot:
     post:
       summary: Restart the SDC instance
@@ -74,120 +70,6 @@ paths:
         - System
       security:
         - OAuth2: []      
-  /{rev}/cert:
-    post:
-      summary: Add x509 keypair
-      description: |
-        Add additional x509 keypair for validation purpose. Adding the keypair will 
-        enable an app's access via "Client Credential" grand type.
-      tags:
-        - Tenancy
-      consumes:
-        - multipart/form-data
-      parameters: 
-        - in: path
-          name: rev
-          default: v1.2beta
-          description: |
-            The revision for this SDC instance.
-          required: true
-          type: string
-        - in: formData
-          name: privateKey
-          description: |
-            The private key of the x509 certificate.
-          required: true
-          type: file
-        - in: formData
-          name: publicCer
-          description: |
-            The signed x509 certificate.
-          required: true
-          type: file
-        - in: formData
-          name: memo
-          description: |
-            describe the keypair for reference only.
-          required: true
-          type: string
-      security:
-        - OAuth2: []  
-  /users/{userId}:
-    delete:
-      summary: Remove user
-      description: |
-        Delete runtime in-memory user detail
-      tags:
-        - Tenancy
-      security:
-        - OAuth2: []      
-    put:
-      summary: Update user
-      description: |
-        Update the runtime in-memory user detail.
-      tags:
-        - Tenancy
-      security:
-        - OAuth2: []      
-    get:
-      summary: Get user detail
-      description: |
-        Fetch OIDC user detail when avaialble. Otherwise it will fetch OAEP detail instead
-      produces:
-        - application/json
-      tags:
-        - Tenancy
-      parameters: 
-        - in: path
-          name: userId
-          description: |
-            The license id; in OIDC mode, the user id refers to the id in the OAuth mapping.
-            E.g. SSO ID.
-          required: true
-          type: string
-      security:
-        - OAuth2: []
-  /introspect:
-    post:
-      summary: Validate bearer token
-      description: |
-        Validate a user's bearer token who authorised this token validation
-         to the client
-      consumes:
-        - application/x-www-form-urlencoded
-      produces:
-        - application/json
-      tags:
-        - Validation
-      parameters:
-        - name: token
-          type: string
-          in: formData
-          description: token to be validated
-          required: true
-      security:
-        - OAuth2: []
-      responses:
-        200:
-          description: Authorisation token (Bearer)
-          schema:
-            type: "object"
-          #examples:
-          #  application/json: |-
-          #    {                
-          #       "access_token":"2YotnFZFEjr1zCsicMWpAA",
-          #       "token_type":"Bearer",
-          #       "expires_in":3600,
-          #     }
-        400: 
-          description: As per RFC authorisation server responds with 400 in case of error
-          schema:
-            type: "object"
-          #examples:
-          #  application/json: |-
-          #    {
-          #      "error":"invalid_request"
-          #    }
 definitions:
   Token:
     type: object
