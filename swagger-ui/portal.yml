@@ -4,7 +4,7 @@ info:
   description: |
     Universal Portal API supports UI applications deployed with the portal.
   version: "1.2.0-b"
-host: ec-portal.run.aws-usw02-dev.ice.predix.io
+#host: ec-portal.run.aws-usw02-dev.ice.predix.io
 schemes:
   - https
 basePath: /
