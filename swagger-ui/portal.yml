@@ -23,6 +23,37 @@ securityDefinitions:
     #  admin: Grants read and write access to administrative information
 paths:
   /{rev}/api/{key}:
+    delete:
+      summary: Delete key-value dataset
+      description: |
+        Delete key-value pair in the embedded DB.
+      tags:
+        - Dataset
+      security:
+        - OAuth2: []
+      parameters: 
+        - in: path
+          name: rev
+          default: v1.2beta
+          description: |
+            The revision for this SDC instance.
+          required: true
+          type: string
+        - in: path
+          name: key
+          description: |
+            The key for the key-value pair dataset.
+          required: true
+          type: string
+      responses:
+        202:
+          description: Deletion accepted
+          schema:
+            type: "object"          
+        501: 
+          description: Internal error during dataset operations
+          schema:
+            type: "object"          
     post:
       summary: Create new key-value dataset
       description: |
