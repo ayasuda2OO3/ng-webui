@@ -24,11 +24,11 @@ securityDefinitions:
 paths:
   /{rev}/api/{key}:
     post:
-      summary: Create new scope
+      summary: Create new key-value dataset
       description: |
-        Create and register new scope with SDC instance.
+        Create bew key-value pair dataset in the embedded DB.
       tags:
-        - Scope
+        - Dataset
       security:
         - OAuth2: []
       parameters: 
@@ -52,12 +52,15 @@ paths:
           required: true
           type: object
     put:
+      tags:
+        - Dataset
+      
     get:
       summary: Get current scopes list
       description: |
         Get current scopes list which registered with SDC instance.
       tags:
-        - Scope
+        - Dataset
       security:
         - OAuth2: []
     
