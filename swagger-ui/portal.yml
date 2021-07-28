@@ -1,6 +1,6 @@
 swagger: '2.0'
 info:
-  title: Universal Portal API
+  title: Universal WebApp API
   description: |
     The Unified Portal API that is supporting functional UI applications, and embedded DB deployed with the portal backend.
   version: "1.2.0-b"
