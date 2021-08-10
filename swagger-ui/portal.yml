@@ -22,7 +22,7 @@ securityDefinitions:
     #  write: Grants write access
     #  admin: Grants read and write access to administrative information
 paths:
-  /{rev}/api/{key}:
+  /{rev}/{app-path}/api/{key}:
     delete:
       summary: Delete key-value dataset
       description: |
@@ -37,6 +37,12 @@ paths:
           default: v1.2beta
           description: |
             The revision for this SDC instance.
+          required: true
+          type: string
+        - in: path
+          name: app-path
+          description: |
+            The pre-configured path for this web app 
           required: true
           type: string
         - in: path
@@ -71,6 +77,12 @@ paths:
           required: true
           type: string
         - in: path
+          name: app-path
+          description: |
+            The pre-configured path for this web app 
+          required: true
+          type: string
+        - in: path
           name: key
           description: |
             The key for the key-value pair dataset.
@@ -98,6 +110,12 @@ paths:
       tags:
         - Dataset
       parameters: 
+        - in: path
+          name: app-path
+          description: |
+            The pre-configured path for this web app 
+          required: true
+          type: string
         - in: path
           name: rev
           default: v1.2beta
@@ -154,6 +172,12 @@ paths:
           required: true
           type: string
         - in: path
+          name: app-path
+          description: |
+            The pre-configured path for this web app 
+          required: true
+          type: string
+        - in: path
           name: key
           description: |
             The key for the key-value pair dataset.
@@ -167,6 +191,20 @@ paths:
         Restart the SDC instance immediately.
       tags:
         - System
+      parameters: 
+        - in: path
+          name: rev
+          default: v1.2beta
+          description: |
+            The revision for this SDC instance.
+          required: true
+          type: string
+        - in: path
+          name: app-path
+          description: |
+            The pre-configured path for this web app 
+          required: true
+          type: string
       security:
         - OAuth2: []      
 definitions:
