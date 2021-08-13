@@ -11,9 +11,10 @@ basePath: /
 produces:
   - application/json
 securityDefinitions:
-  BearerAuth:
-    type: http
-    scheme: bearer
+  SDCAuth:
+    type: apiKey
+    name: Authorization
+    in: header
   OAuth2:
     type: oauth2
     flow: application
@@ -33,7 +34,7 @@ paths:
       tags:
         - Dataset
       security:
-        - BearerAuth: []
+        - SDCAuth: []
       responses:
         200:
           description: Return dataset value
@@ -65,7 +66,7 @@ paths:
       tags:
         - Dataset
       security:
-        - BearerAuth: []
+        - SDCAuth: []
       parameters: 
         - in: path
           name: rev
