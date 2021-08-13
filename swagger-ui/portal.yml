@@ -11,6 +11,10 @@ basePath: /
 produces:
   - application/json
 securityDefinitions:
+  SDCAuth:
+    type: https
+    scheme: bearer
+    bearerFormat: OAEP
   OAuth2:
     type: oauth2
     flow: application
@@ -22,6 +26,38 @@ securityDefinitions:
     #  write: Grants write access
     #  admin: Grants read and write access to administrative information
 paths:
+  /{rev}/{app-path}/api/snapshot:
+    get:
+      summary: Get key-value pair
+      description: |
+        Get key-value pair in the dataset
+      tags:
+        - Dataset
+      security:
+        - SDCAuth: []
+      responses:
+        200:
+          description: Return dataset value
+          schema:
+            type: "object"
+        501: 
+          description: Internal error during dataset operations
+          schema:
+            type: "object"
+      parameters: 
+        - in: path
+          name: rev
+          default: v1.2beta
+          description: |
+            The revision for this SDC instance.
+          required: true
+          type: string
+        - in: path
+          name: app-path
+          description: |
+            The pre-configured path for this web app 
+          required: true
+          type: string
   /{rev}/{app-path}/api/{key}:
     delete:
       summary: Delete key-value dataset
@@ -30,7 +66,7 @@ paths:
       tags:
         - Dataset
       security:
-        - OAuth2: []
+        - SDCAuth: []
       parameters: 
         - in: path
           name: rev
@@ -67,7 +103,7 @@ paths:
       tags:
         - Dataset
       security:
-        - OAuth2: []
+        - SDCAuth: []
       parameters: 
         - in: path
           name: rev
@@ -136,7 +172,7 @@ paths:
           required: true
           type: object    
       security:
-        - OAuth2: []
+        - SDCAuth: []
       responses:
         200:
           description: updated key-value pair successful. 
@@ -153,7 +189,7 @@ paths:
       tags:
         - Dataset
       security:
-        - OAuth2: []
+        - SDCAuth: []
       responses:
         200:
           description: Return dataset value
@@ -206,7 +242,7 @@ paths:
           required: true
           type: string
       security:
-        - OAuth2: []      
+        - SDCAuth: []      
 definitions:
   Token:
     type: object
