@@ -12,7 +12,7 @@ produces:
   - application/json
 securityDefinitions:
   SDCAuth:
-    type: https
+    type: http
     scheme: bearer
     bearerFormat: OAEP
   OAuth2:
