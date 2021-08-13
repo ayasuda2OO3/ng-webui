@@ -11,10 +11,9 @@ basePath: /
 produces:
   - application/json
 securityDefinitions:
-  SDCAuth:
+  BearerAuth:
     type: http
     scheme: bearer
-    bearerFormat: OAEP
   OAuth2:
     type: oauth2
     flow: application
@@ -34,7 +33,7 @@ paths:
       tags:
         - Dataset
       security:
-        - SDCAuth: []
+        - BearerAuth: []
       responses:
         200:
           description: Return dataset value
@@ -66,7 +65,7 @@ paths:
       tags:
         - Dataset
       security:
-        - SDCAuth: []
+        - BearerAuth: []
       parameters: 
         - in: path
           name: rev
@@ -103,7 +102,7 @@ paths:
       tags:
         - Dataset
       security:
-        - SDCAuth: []
+        - BearerAuth: []
       parameters: 
         - in: path
           name: rev
@@ -172,7 +171,7 @@ paths:
           required: true
           type: object    
       security:
-        - SDCAuth: []
+        - BearerAuth: []
       responses:
         200:
           description: updated key-value pair successful. 
@@ -189,7 +188,7 @@ paths:
       tags:
         - Dataset
       security:
-        - SDCAuth: []
+        - BearerAuth: []
       responses:
         200:
           description: Return dataset value
@@ -242,7 +241,7 @@ paths:
           required: true
           type: string
       security:
-        - SDCAuth: []      
+        - BearerAuth: []      
 definitions:
   Token:
     type: object
