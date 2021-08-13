@@ -11,10 +11,6 @@ basePath: /
 produces:
   - application/json
 securityDefinitions:
-  SDCAuth:
-    type: apiKey
-    name: Authorization
-    in: header
   OAuth2:
     type: oauth2
     flow: application
@@ -33,8 +29,8 @@ paths:
         Get key-value pair in the dataset
       tags:
         - Dataset
-      security:
-        - SDCAuth: []
+      #security:
+        #- SDCAuth: []
       responses:
         200:
           description: Return dataset value
@@ -45,6 +41,12 @@ paths:
           schema:
             type: "object"
       parameters: 
+        - in: header
+          name: Authorization
+          schema:
+            type: string
+          default: Bearer <SDC-Token>          
+          required: true
         - in: path
           name: rev
           default: v1.2beta
@@ -65,9 +67,13 @@ paths:
         Delete key-value pair in the embedded DB.
       tags:
         - Dataset
-      security:
-        - SDCAuth: []
       parameters: 
+        - in: header
+          name: Authorization
+          schema:
+            type: string
+          default: Bearer <SDC-Token>          
+          required: true
         - in: path
           name: rev
           default: v1.2beta
@@ -102,9 +108,13 @@ paths:
         Create bew key-value pair dataset in the embedded DB.
       tags:
         - Dataset
-      security:
-        - BearerAuth: []
-      parameters: 
+      parameters:
+        - in: header
+          name: Authorization
+          schema:
+            type: string
+          default: Bearer <SDC-Token>          
+          required: true        
         - in: path
           name: rev
           default: v1.2beta
@@ -145,7 +155,13 @@ paths:
         Update key-value pair in dataset with the specified key.
       tags:
         - Dataset
-      parameters: 
+      parameters:
+        - in: header
+          name: Authorization
+          schema:
+            type: string
+          default: Bearer <SDC-Token>          
+          required: true        
         - in: path
           name: app-path
           description: |
@@ -170,9 +186,7 @@ paths:
           description: |
             The value for the key-value pair dataset.
           required: true
-          type: object    
-      security:
-        - BearerAuth: []
+          type: object
       responses:
         200:
           description: updated key-value pair successful. 
@@ -188,8 +202,6 @@ paths:
         Get key-value pair in the dataset
       tags:
         - Dataset
-      security:
-        - BearerAuth: []
       responses:
         200:
           description: Return dataset value
@@ -199,7 +211,13 @@ paths:
           description: Internal error during dataset operations
           schema:
             type: "object"
-      parameters: 
+      parameters:
+        - in: header
+          name: Authorization
+          schema:
+            type: string
+          default: Bearer <SDC-Token>          
+          required: true        
         - in: path
           name: rev
           default: v1.2beta
@@ -218,8 +236,7 @@ paths:
           description: |
             The key for the key-value pair dataset.
           required: true
-          type: string
-        
+          type: string        
   /{rev}/{app-path}/reboot:
     post:
       summary: Restart the SDC instance
@@ -227,7 +244,13 @@ paths:
         Restart the SDC instance immediately.
       tags:
         - System
-      parameters: 
+      parameters:
+        - in: header
+          name: Authorization
+          schema:
+            type: string
+          default: Bearer <SDC-Token>          
+          required: true        
         - in: path
           name: rev
           default: v1.2beta
@@ -241,8 +264,6 @@ paths:
             The pre-configured path for this web app 
           required: true
           type: string
-      security:
-        - BearerAuth: []      
 definitions:
   Token:
     type: object
