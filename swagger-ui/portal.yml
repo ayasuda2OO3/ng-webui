@@ -264,7 +264,7 @@ paths:
             The pre-configured path for this web app 
           required: true
           type: string
-/{rev}/{app-path}/api/seed:
+  /{rev}/{app-path}/api/seed:
     get:
       summary: Get the list of seeders
       description: |
