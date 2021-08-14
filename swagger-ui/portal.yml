@@ -244,6 +244,11 @@ paths:
         Restart the SDC instance immediately.
       tags:
         - System
+      responses:
+        200:
+          description: return the instance in three seconds.
+          schema:
+            type: "object"
       parameters:
         - in: header
           name: Authorization
@@ -271,6 +276,11 @@ paths:
         Get the list of seeders in the cluster
       tags:
         - System
+      responses:
+        200:
+          description: return the list of seeder
+          schema:
+            type: "object"
       parameters:
         - in: header
           name: Authorization
