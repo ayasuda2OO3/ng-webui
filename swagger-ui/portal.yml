@@ -264,6 +264,33 @@ paths:
             The pre-configured path for this web app 
           required: true
           type: string
+/{rev}/{app-path}/api/seed:
+    get:
+      summary: Get the list of seeders
+      description: |
+        Get the list of seeders in the cluster
+      tags:
+        - System
+      parameters:
+        - in: header
+          name: Authorization
+          schema:
+            type: string
+          default: Bearer <SDC-Token>          
+          required: true        
+        - in: path
+          name: rev
+          default: v1.2beta
+          description: |
+            The revision for this SDC instance.
+          required: true
+          type: string
+        - in: path
+          name: app-path
+          description: |
+            The pre-configured path for this web app 
+          required: true
+          type: string
 definitions:
   Token:
     type: object
