@@ -60,6 +60,42 @@ paths:
             The pre-configured path for this web app 
           required: true
           type: string
+  /{rev}/{app-path}/api:
+    get:
+      summary: Get all keys
+      description: |
+        Get all keys in a array list
+      tags:
+        - Dataset
+      responses:
+        200:
+          description: Return key array
+          schema:
+            type: "object"
+        501: 
+          description: Internal error during dataset operations
+          schema:
+            type: "object"
+      parameters:
+        - in: header
+          name: Authorization
+          schema:
+            type: string
+          default: Bearer <SDC-Token>          
+          required: true        
+        - in: path
+          name: rev
+          default: v1.2beta
+          description: |
+            The revision for this api instance.
+          required: true
+          type: string
+        - in: path
+          name: app-path
+          description: |
+            The pre-configured path for this web app 
+          required: true
+          type: string
   /{rev}/{app-path}/api/{key}:
     delete:
       summary: Delete key-value dataset
